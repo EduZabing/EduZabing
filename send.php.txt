@@ -1,0 +1,24 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+    $to = "kontakt@twojadomena.pl"; // ← TWÓJ MAIL
+    $name = strip_tags($_POST["name"]);
+    $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
+    $message = strip_tags($_POST["message"]);
+
+    $subject = "Nowa wiadomość – EduŻabing";
+
+    $body = "Imię: $name\n";
+    $body .= "E-mail: $email\n\n";
+    $body .= "Wiadomość:\n$message";
+
+    $headers = "From: EduŻabing <no-reply@twojadomena.pl>\r\n";
+    $headers .= "Reply-To: $email\r\n";
+    $headers .= "Content-Type: text/plain; charset=UTF-8";
+
+    if (mail($to, $subject, $body, $headers)) {
+        echo "Dziękujemy! Wiadomość została wysłana.";
+    } else {
+        echo "Błąd wysyłania wiadomości.";
+    }
+}
