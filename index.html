@@ -8,141 +8,188 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-:root {
-    --sage: #8EA58C;
-    --evergreen: #344C3D;
-    --mint: #BFCFBB;
-    --white: #ffffff;
+:root{
+--sage:#8EA58C;
+--evergreen:#344C3D;
+--mint:#BFCFBB;
+--white:#fff;
 }
-
-* { box-sizing: border-box; }
-
-body {
-    margin: 0;
-    font-family: "Poppins", sans-serif;
-    background-color: var(--sage);
-    color: var(--evergreen);
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:Poppins,sans-serif;
+background:var(--sage);
+color:var(--evergreen)
 }
 
 /* NAVBAR */
-.navbar {
-    background: var(--white);
-    padding: 14px 20px;
-    display: flex;
-    align-items: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 100;
+.navbar{
+background:#fff;
+padding:14px 20px;
+display:flex;
+align-items:center;
+box-shadow:0 4px 12px rgba(0,0,0,.1);
+position:sticky;
+top:0;
+z-index:100
 }
-
-.navbar-left {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    cursor: pointer;
+.navbar-left{
+display:flex;
+align-items:center;
+gap:12px;
+cursor:pointer
 }
-
-.navbar-left img { width: 40px; }
-
-.navbar-title {
-    font-size: 20px;
-    font-weight: 600;
-}
+.navbar-left img{width:40px}
+.navbar-title{font-size:20px;font-weight:600}
 
 /* LAYOUT */
-.wrapper { padding: 24px; }
-
-.tabs {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
+.wrapper{padding:24px}
+.tabs{
+display:flex;
+gap:10px;
+margin-bottom:20px;
+flex-wrap:wrap
 }
-
-.tablink {
-    background: var(--white);
-    border: 2px solid var(--mint);
-    padding: 10px 18px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: 600;
+.tablink{
+background:#fff;
+border:2px solid var(--mint);
+padding:10px 18px;
+border-radius:10px;
+cursor:pointer;
+font-weight:600
 }
-
-.tablink.active {
-    background: var(--evergreen);
-    color: var(--white);
+.tablink.active{
+background:var(--evergreen);
+color:#fff
 }
-
-.tabcontent {
-    display: none;
-    background: var(--white);
-    padding: 22px;
-    border-radius: 16px;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+.tabcontent{
+display:none;
+background:#fff;
+padding:22px;
+border-radius:16px;
+box-shadow:0 6px 16px rgba(0,0,0,.12)
 }
 
 /* EVENTS */
-.home-event, .event-card {
-    cursor: pointer;
-    border-radius: 18px;
-    overflow: hidden;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    transition: 0.3s;
-    margin-bottom: 24px;
+.home-event,.event-card{
+cursor:pointer;
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 8px 20px rgba(0,0,0,.15);
+transition:.3s;
+margin-bottom:24px
+}
+.home-event:hover,.event-card:hover{transform:translateY(-4px)}
+.home-event img,.event-card img{
+width:100%;
+height:220px;
+object-fit:cover
+}
+.home-event-text{padding:18px}
+.events-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:16px
+}
+.event-img{
+width:70%;
+max-width:500px;
+border-radius:16px;
+margin:16px 0
 }
 
-.home-event:hover, .event-card:hover {
-    transform: translateY(-4px);
+/* GALLERY */
+.gallery{
+max-width:520px;
+margin:24px auto
 }
-
-.home-event img, .event-card img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
+.gallery-main{
+position:relative;
+overflow:hidden;
+border-radius:14px
 }
-
-.home-event-text { padding: 18px; }
-
-.events-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px;
+.gallery-main img{
+width:100%;
+height:280px;
+object-fit:cover;
+cursor:pointer
 }
+.gallery-thumbs{
+display:flex;
+gap:10px;
+margin-top:10px;
+justify-content:center;
+flex-wrap:wrap
+}
+.gallery-thumbs img{
+width:80px;
+height:60px;
+object-fit:cover;
+border-radius:8px;
+cursor:pointer;
+opacity:.6
+}
+.gallery-thumbs img.active{
+opacity:1;
+outline:3px solid var(--evergreen)
+}
+.prev,.next{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+background:rgba(52,76,61,.7);
+color:#fff;
+border:none;
+padding:10px;
+border-radius:50%;
+cursor:pointer;
+font-size:20px
+}
+.prev{left:10px}
+.next{right:10px}
 
-.event-img {
-    width: 100%;
-    border-radius: 16px;
-    margin: 16px 0;
+/* LIGHTBOX */
+.lightbox{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.9);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:1000
+}
+.lightbox img{
+max-width:92%;
+max-height:92%;
+border-radius:12px
 }
 
 /* CONTACT */
-.contact-form { max-width: 480px; }
-
-.contact-form label {
-    display: block;
-    margin-top: 14px;
-    font-weight: 600;
+.contact-form{max-width:480px}
+.contact-form label{display:block;margin-top:14px;font-weight:600}
+.contact-form input,.contact-form textarea{
+width:100%;
+padding:12px;
+border-radius:10px;
+border:2px solid var(--mint)
+}
+.contact-form button{
+margin-top:20px;
+background:var(--evergreen);
+color:#fff;
+border:none;
+padding:14px;
+border-radius:12px;
+font-size:16px;
+cursor:pointer
 }
 
-.contact-form input,
-.contact-form textarea {
-    width: 100%;
-    padding: 12px;
-    margin-top: 6px;
-    border-radius: 10px;
-    border: 2px solid var(--mint);
-}
-
-.contact-form button {
-    margin-top: 20px;
-    background: var(--evergreen);
-    color: var(--white);
-    border: none;
-    padding: 14px;
-    border-radius: 12px;
-    font-size: 16px;
-    cursor: pointer;
+/* MOBILE */
+@media(max-width:600px){
+.wrapper{padding:16px}
+.event-img{width:100%}
+.gallery-main img{height:220px}
+.gallery-thumbs img{width:64px;height:48px}
 }
 </style>
 </head>
@@ -150,91 +197,68 @@ body {
 <body>
 
 <div class="navbar">
-    <div class="navbar-left" onclick="goHome()">
-        <img src="logo.png">
-        <div class="navbar-title">EduŻabing</div>
-    </div>
+<div class="navbar-left" onclick="goHome()">
+<img src="logo.png">
+<div class="navbar-title">EduŻabing</div>
+</div>
 </div>
 
 <div class="wrapper">
 
 <div class="tabs">
-    <button class="tablink active" onclick="openTab(event,'home')">Strona główna</button>
-    <button class="tablink" onclick="openTab(event,'events')">Wydarzenia</button>
-    <button class="tablink" onclick="openTab(event,'contact')">Kontakt</button>
+<button class="tablink active" onclick="openTab(event,'home')">Strona główna</button>
+<button class="tablink" onclick="openTab(event,'events')">Wydarzenia</button>
+<button class="tablink" onclick="openTab(event,'contact')">Kontakt</button>
 </div>
 
 <!-- HOME -->
 <div id="home" class="tabcontent">
-
 <div class="home-event" onclick="showView('about')">
-    <img src="o-nas-1.jpg">
-    <div class="home-event-text">
-        <h3>O nas 🌿</h3>
-        <p>Poznaj EduŻabing</p>
-    </div>
+<img src="o-nas-1.jpg">
+<div class="home-event-text"><h3>O nas 🌿</h3><p>Poznaj EduŻabing</p></div>
 </div>
 
 <div class="home-event" onclick="showView('event-zima')">
-    <img src="wydarzenie-zima.jpg">
-    <div class="home-event-text">
-        <h3>Zimowe opowieści ❄️</h3>
-        <p>9 lutego 2025</p>
-    </div>
+<img src="wydarzenie-zima.jpg">
+<div class="home-event-text"><h3>Zimowe opowieści ❄️</h3><p>9 lutego 2025</p></div>
 </div>
 
 <div class="home-event" onclick="showView('event-wiosna')">
-    <img src="wydarzenie-wiosna.jpg">
-    <div class="home-event-text">
-        <h3>Szukamy wiosny 🌱</h3>
-        <p>23 marca 2025</p>
-    </div>
+<img src="wydarzenie-wiosna.jpg">
+<div class="home-event-text"><h3>Szukamy wiosny 🌱</h3><p>23 marca 2025</p></div>
 </div>
 
 <div class="home-event" onclick="showView('event-kumka')">
-    <img src="wydarzenie-kumka.jpg">
-    <div class="home-event-text">
-        <h3>Co w trawie… kumka 🐸</h3>
-        <p>27 kwietnia 2025</p>
-    </div>
+<img src="wydarzenie-kumka.jpg">
+<div class="home-event-text"><h3>Co w trawie… kumka 🐸</h3><p>27 kwietnia 2025</p></div>
 </div>
 
 <div class="home-event" onclick="showView('event-zabing')">
-    <img src="wydarzenie-zabing.jpg">
-    <div class="home-event-text">
-        <h3>Pierwszy żabing z ochotnikami 🐸</h3>
-        <p>Kwiecień 2025</p>
-    </div>
+<img src="wydarzenie-zabing.jpg">
+<div class="home-event-text"><h3>Pierwszy żabing z ochotnikami 🐸</h3><p>Kwiecień 2025</p></div>
 </div>
 
 <div class="home-event" onclick="showView('event-ptaki')">
-    <img src="wydarzenie-ptaki-fiszor.jpg">
-    <div class="home-event-text">
-        <h3>Ptaki nad Fiszorem 🐦</h3>
-        <p>7 czerwca 2025</p>
-    </div>
+<img src="wydarzenie-ptaki-fiszor.jpg">
+<div class="home-event-text"><h3>Ptaki nad Fiszorem 🐦</h3><p>7 czerwca 2025</p></div>
 </div>
 
 <div class="home-event" onclick="showView('event-dendro')">
-    <img src="wydarzenie-dendrologia.jpg">
-    <div class="home-event-text">
-        <h3>Dendrologiczni detektywi 🌳</h3>
-        <p>3 sierpnia 2025</p>
-    </div>
+<img src="wydarzenie-dendrologia.jpg">
+<div class="home-event-text"><h3>Dendrologiczni detektywi 🌳</h3><p>3 sierpnia 2025</p></div>
 </div>
-
 </div>
 
 <!-- EVENTS GRID -->
 <div id="events" class="tabcontent">
 <h2>Wydarzenia 📅</h2>
 <div class="events-grid">
-    <div class="event-card" onclick="showView('event-zima')"><img src="wydarzenie-zima.jpg"></div>
-    <div class="event-card" onclick="showView('event-wiosna')"><img src="wydarzenie-wiosna.jpg"></div>
-    <div class="event-card" onclick="showView('event-kumka')"><img src="wydarzenie-kumka.jpg"></div>
-    <div class="event-card" onclick="showView('event-zabing')"><img src="wydarzenie-zabing.jpg"></div>
-    <div class="event-card" onclick="showView('event-ptaki')"><img src="wydarzenie-ptaki-fiszor.jpg"></div>
-    <div class="event-card" onclick="showView('event-dendro')"><img src="wydarzenie-dendrologia.jpg"></div>
+<div class="event-card" onclick="showView('event-zima')"><img src="wydarzenie-zima.jpg"></div>
+<div class="event-card" onclick="showView('event-wiosna')"><img src="wydarzenie-wiosna.jpg"></div>
+<div class="event-card" onclick="showView('event-kumka')"><img src="wydarzenie-kumka.jpg"></div>
+<div class="event-card" onclick="showView('event-zabing')"><img src="wydarzenie-zabing.jpg"></div>
+<div class="event-card" onclick="showView('event-ptaki')"><img src="wydarzenie-ptaki-fiszor.jpg"></div>
+<div class="event-card" onclick="showView('event-dendro')"><img src="wydarzenie-dendrologia.jpg"></div>
 </div>
 </div>
 
@@ -242,81 +266,137 @@ body {
 <div id="about" class="tabcontent">
 <h2>Kim jesteśmy? 🌍</h2>
 <img src="o-nas-1.jpg" class="event-img">
-
-<p>
-EduŻabing to inicjatywa zrodzona z miłości do przyrody 🌿  
-Pokazujemy świat płazów – cichy, niepozorny, a niezwykle ważny 🐸  
-Edukujemy, inspirujemy i działamy na rzecz ich ochrony.
-</p>
-
+<p>EduŻabing to inicjatywa zrodzona z miłości do przyrody 🌿 Pokazujemy świat płazów – cichy, niepozorny, a niezwykle ważny 🐸 Edukujemy, inspirujemy i działamy na rzecz ich ochrony.</p>
 <p><strong>Julia Stojak</strong> – mgr inż. zootechniki, technik weterynarii, hodowczyni płazów i gadów.</p>
 <p><strong>Krystian Rachubka</strong> – mgr inż. leśnictwa, instruktor ochrony przyrody PTTK, edukator.</p>
 </div>
 
-<!-- EVENT DETAILS -->
+<!-- EVENT ZIMA -->
 <div id="event-zima" class="tabcontent">
-<h2>Zimowe opowieści ❄️</h2>
+<h2>Na tropie przyrody: zimowe opowieści ❄️</h2>
 <img src="wydarzenie-zima.jpg" class="event-img">
-<p>
-Zima wcale nie musi być nudna! ❄️🌲  
-Wyruszyliśmy na trop zwierząt 🐾, poznając ich zimowe strategie przetrwania.  
-Budowaliśmy budki lęgowe 🐦 i uczyliśmy się, jak realnie pomagać przyrodzie.
-</p>
+<p>Zima wcale nie musi być nudna! ❄️🌲 Wyruszyliśmy na trop zwierząt 🐾, poznając ich zimowe strategie przetrwania. Budowaliśmy budki lęgowe 🐦 i uczyliśmy się, jak realnie pomagać przyrodzie.</p>
+<p><strong>Organizator:</strong> Stowarzyszenie Aktywne Zabrodzie<br>
+<strong>Prowadzący:</strong> Edużabing<br>
+9 lutego 2025 r. odbyło się pierwsze spotkanie z cyklu przyrodniczych spacerów. Wędrowaliśmy tropem tajemnic zimowego lasu. Mieliśmy przyjemność budować budki lęgowe dla ptaków.</p>
+<div class="gallery">
+<div class="gallery-main">
+<img src="zima1.jpg" onclick="openLightbox(this.src)">
+<button class="prev" onclick="slide(this,-1)">❮</button>
+<button class="next" onclick="slide(this,1)">❯</button>
+</div>
+<div class="gallery-thumbs">
+<img src="zima1.jpg" class="active" onclick="thumb(this,0)">
+<img src="zima2.jpg" onclick="thumb(this,1)">
+<img src="zima3.jpg" onclick="thumb(this,2)">
+</div>
+</div>
 </div>
 
+<!-- EVENT WIOSNA -->
 <div id="event-wiosna" class="tabcontent">
-<h2>Szukamy wiosny 🌱</h2>
+<h2>Na tropie przyrody: szukamy wiosny 🌱</h2>
 <img src="wydarzenie-wiosna.jpg" class="event-img">
-<p>
-Marzec przywitaliśmy w terenie 🌼  
-Szukaliśmy pierwszych oznak wiosny, żegnaliśmy zimę eko Marzanną ♻️  
-i obserwowaliśmy ptaki wracające z dalekich podróży 🐦
-</p>
+<p>Marzec przywitaliśmy w terenie 🌼 Szukaliśmy pierwszych oznak wiosny, żegnaliśmy zimę eko Marzanną ♻️ i obserwowaliśmy ptaki wracające z dalekich podróży 🐦</p>
+<p><strong>Organizator:</strong> Stowarzyszenie Aktywne Zabrodzie<br>
+<strong>Prowadzący:</strong> Edużabing<br>
+23 marca 2025 r. odbyło się kolejne spotkanie z cyklu przyrodniczych spacerów. Tym razem wędrowaliśmy tropem pierwszych oznak wiosny i pożegnaliśmy zimę w tradycyjny sposób – tworząc eko Marzannę. Wypatrywaliśmy pierwszych kwiatów, powracających ptaków i oznak budzącej się do życia przyrody.</p>
+<div class="gallery">
+<div class="gallery-main">
+<img src="wiosna1.jpg" onclick="openLightbox(this.src)">
+<button class="prev" onclick="slide(this,-1)">❮</button>
+<button class="next" onclick="slide(this,1)">❯</button>
+</div>
+<div class="gallery-thumbs">
+<img src="wiosna1.jpg" class="active" onclick="thumb(this,0)">
+<img src="wiosna2.jpg" onclick="thumb(this,1)">
+<img src="wiosna3.jpg" onclick="thumb(this,2)">
+</div>
+</div>
 </div>
 
+<!-- EVENT KUMKA -->
 <div id="event-kumka" class="tabcontent">
-<h2>Co w trawie… kumka 🐸</h2>
+<h2>Na tropie przyrody: co w trawie… kumka 🐸</h2>
 <img src="wydarzenie-kumka.jpg" class="event-img">
-<p>
-Spacer nad Fiszorem był prawdziwą ucztą dla miłośników płazów 🌿  
-Rozpoznawaliśmy głosy, gatunki i zwyczaje 🐸  
-To był pierwszy tak duży, wspólny żabing!
-</p>
+<p>Spacer nad Fiszorem był prawdziwą ucztą dla miłośników płazów 🌿 Rozpoznawaliśmy głosy, gatunki i zwyczaje 🐸 To był pierwszy tak duży, wspólny żabing!</p>
+<p><strong>Organizator:</strong> Stowarzyszenie Aktywne Zabrodzie<br>
+<strong>Prowadzący:</strong> Edużabing<br>
+27 kwietnia 2025 r. odbyło się kolejne spotkanie z cyklu przyrodniczych spacerów. Tym razem przenieśliśmy się nad Fiszor, by odkrywać świat płazów – ich zwyczaje, dźwięki i niezwykłe środowisko życia. Był to pierwszy, zorganizowany żabing dla tak dużej grupy!</p>
+<div class="gallery">
+<div class="gallery-main">
+<img src="kumka1.jpg" onclick="openLightbox(this.src)">
+<button class="prev" onclick="slide(this,-1)">❮</button>
+<button class="next" onclick="slide(this,1)">❯</button>
+</div>
+<div class="gallery-thumbs">
+<img src="kumka1.jpg" class="active" onclick="thumb(this,0)">
+<img src="kumka2.jpg" onclick="thumb(this,1)">
+<img src="kumka3.jpg" onclick="thumb(this,2)">
+</div>
+</div>
 </div>
 
+<!-- EVENT ZABING -->
 <div id="event-zabing" class="tabcontent">
 <h2>Pierwszy żabing z ochotnikami 🐸</h2>
 <img src="wydarzenie-zabing.jpg" class="event-img">
-<p>
-Organizator i prowadzący: <strong>EduŻabing</strong> 🌿  
-W kwietniu odbył się pierwszy żabing z udziałem ochotników!  
-Odwiedziliśmy miejskie bulwary oraz rozlewisko w olsie 🌊🌳  
-</p>
-<p>
-Udało się zaobserwować traszki zwyczajne, żaby trawne i ropuchę szarą 🐸  
-Poznaliśmy różnice w skrzeku poszczególnych grup płazów  
-i dowiedzieliśmy się, jak je rozpoznawać w terenie 👀
-</p>
+<p>Organizator i prowadzący: <strong>EduŻabing</strong> 🌿 W kwietniu odbył się pierwszy żabing z udziałem ochotników! Odwiedziliśmy miejskie bulwary oraz rozlewisko w olsie 🌊🌳 Udało się zaobserwować traszki zwyczajne, żaby trawne i ropuchę szarą 🐸 Poznaliśmy różnice w skrzeku poszczególnych grup płazów i dowiedzieliśmy się, jak je rozpoznawać w terenie 👀</p>
+<div class="gallery">
+<div class="gallery-main">
+<img src="zabing1.jpg" onclick="openLightbox(this.src)">
+<button class="prev" onclick="slide(this,-1)">❮</button>
+<button class="next" onclick="slide(this,1)">❯</button>
+</div>
+<div class="gallery-thumbs">
+<img src="zabing1.jpg" class="active" onclick="thumb(this,0)">
+<img src="zabing2.jpg" onclick="thumb(this,1)">
+<img src="zabing3.jpg" onclick="thumb(this,2)">
+</div>
+</div>
 </div>
 
+<!-- EVENT PTAKI -->
 <div id="event-ptaki" class="tabcontent">
-<h2>Ptaki nad Fiszorem 🐦</h2>
+<h2>Na tropie przyrody: ptaki nad Fiszorem 🐦</h2>
 <img src="wydarzenie-ptaki-fiszor.jpg" class="event-img">
-<p>
-Czerwcowy spacer wypełniły ptasie trele 🎶  
-Słuchaliśmy śpiewów, obserwowaliśmy loty  
-i poznawaliśmy skrzydlatych mieszkańców okolicy.
-</p>
+<p>Czerwcowy spacer wypełniły ptasie trele 🎶 Słuchaliśmy śpiewów, obserwowaliśmy loty i poznawaliśmy skrzydlatych mieszkańców okolicy.</p>
+<p><strong>Organizator:</strong> Stowarzyszenie Aktywne Zabrodzie oraz Edużabing<br>
+<strong>Prowadzący:</strong> Edużabing<br>
+7 czerwca 2025 r. odbyło się kolejne spotkanie z cyklu przyrodniczych spacerów. Tym razem wędrowaliśmy tropem skrzydlatych mieszkańców naszych łąk i zarośli. Wędrowaliśmy wzdłuż Fiszora, by słuchać ptasich śpiewów, wypatrywać sylwetek nad głowami i poznać świat pełen piór i treli.</p>
+<div class="gallery">
+<div class="gallery-main">
+<img src="ptaki1.jpg" onclick="openLightbox(this.src)">
+<button class="prev" onclick="slide(this,-1)">❮</button>
+<button class="next" onclick="slide(this,1)">❯</button>
+</div>
+<div class="gallery-thumbs">
+<img src="ptaki1.jpg" class="active" onclick="thumb(this,0)">
+<img src="ptaki2.jpg" onclick="thumb(this,1)">
+<img src="ptaki3.jpg" onclick="thumb(this,2)">
+</div>
+</div>
 </div>
 
+<!-- EVENT DENDRO -->
 <div id="event-dendro" class="tabcontent">
-<h2>Dendrologiczni detektywi 🌳</h2>
+<h2>Na tropie przyrody: dendrologiczni detektywi 🌳</h2>
 <img src="wydarzenie-dendrologia.jpg" class="event-img">
-<p>
-Letni spacer z drzewami w roli głównej 🌳  
-Uczyliśmy się rozpoznawać gatunki po liściach, korze i kształcie  
-odkrywając tajemnice zielonych gigantów.
-</p>
+<p>Letni spacer z drzewami w roli głównej 🌳 Uczyliśmy się rozpoznawać gatunki po liściach, korze i kształcie odkrywając tajemnice zielonych gigantów.</p>
+<p><strong>Organizator:</strong> Stowarzyszenie Aktywne Zabrodzie oraz Edużabing<br>
+<strong>Prowadzący:</strong> EduŻabing<br>
+3 sierpnia 2025 r. odbyło się kolejne spotkanie z cyklu przyrodniczych spacerów. Tym razem wędrowaliśmy tropem drzew – tych cichych gigantów, które dają cień, tlen i schronienie. Poznaliśmy ich gatunki, budowę, ciekawe strategie przetrwania i związki z innymi organizmami. Otworzyliśmy oczy na świat liści, kory i korzeni.</p>
+<div class="gallery">
+<div class="gallery-main">
+<img src="dendro1.jpg" onclick="openLightbox(this.src)">
+<button class="prev" onclick="slide(this,-1)">❮</button>
+<button class="next" onclick="slide(this,1)">❯</button>
+</div>
+<div class="gallery-thumbs">
+<img src="dendro1.jpg" class="active" onclick="thumb(this,0)">
+<img src="dendro2.jpg" onclick="thumb(this,1)">
+<img src="dendro3.jpg" onclick="thumb(this,2)">
+</div>
 </div>
 
 <!-- CONTACT -->
@@ -336,19 +416,43 @@ odkrywając tajemnice zielonych gigantów.
 
 </div>
 
+<div class="lightbox" onclick="this.style.display='none'">
+<img id="lightbox-img">
+</div>
+
 <script>
-function hideAll() {
-    document.querySelectorAll(".tabcontent").forEach(e => e.style.display = "none");
+function hideAll(){document.querySelectorAll(".tabcontent").forEach(e=>e.style.display="none")}
+function showView(id){hideAll();document.getElementById(id).style.display="block"}
+function openTab(e,t){showView(t);document.querySelectorAll(".tablink").forEach(b=>b.classList.remove("active"));e.currentTarget.classList.add("active")}
+function goHome(){showView("home")}
+
+function slide(btn,dir){
+const g=btn.closest('.gallery');
+const thumbs=g.querySelectorAll('.gallery-thumbs img');
+let i=[...thumbs].findIndex(t=>t.classList.contains('active'))+dir;
+if(i<0)i=thumbs.length-1;
+if(i>=thumbs.length)i=0;
+setSlide(g,i);
 }
-function showView(id) {
-    hideAll();
-    document.getElementById(id).style.display = "block";
+function thumb(el,i){setSlide(el.closest('.gallery'),i)}
+function setSlide(g,i){
+const thumbs=g.querySelectorAll('.gallery-thumbs img');
+thumbs.forEach(t=>t.classList.remove('active'));
+thumbs[i].classList.add('active');
+g.querySelector('.gallery-main img').src=thumbs[i].src;
 }
-function openTab(evt, tab) {
-    showView(tab);
+function openLightbox(src){
+document.getElementById("lightbox-img").src=src;
+document.querySelector(".lightbox").style.display="flex";
 }
-function goHome() { showView("home"); }
-document.addEventListener("DOMContentLoaded", () => showView("home"));
+setInterval(()=>{
+document.querySelectorAll('.gallery').forEach(g=>{
+const n=g.querySelector('.next');
+if(n)slide(n,1);
+});
+},4000);
+
+document.addEventListener("DOMContentLoaded",()=>showView("home"));
 </script>
 
 </body>
